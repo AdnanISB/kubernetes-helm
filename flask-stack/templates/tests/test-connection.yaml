@@ -10,8 +10,8 @@ spec:
   containers:
     - name: wget
       image: busybox
-      command: ['wget']
+      command: ["wget"]
       args:
-        - "{{ include "flask-stack.fullname" . }}:{{ .Values.flaskApp.service.port }}"
+        - {{ include "flask-stack.fullname" . }}:{{ index .Values "flask-app" "service" "port" }}
   restartPolicy: Never
 

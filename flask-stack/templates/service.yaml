@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "flask-stack.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.flaskApp.service.type }}
+  type: {{ index .Values "flask-app" "service" "type" | default "ClusterIP" }}
   ports:
-    - port: {{ .Values.flaskApp.service.port }}
-      targetPort: {{ .Values.flaskApp.service.port }}
+    - port: {{ index .Values "flask-app" "service" "port" | default 5000 }}
+      targetPort: {{ index .Values "flask-app" "service" "port" | default 5000 }}
       protocol: TCP
       name: http
   selector:

@@ -6,7 +6,7 @@ metadata:
     {{- include "flask-stack.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | default 1 }}
   {{- end }}
   selector:
     matchLabels:
@@ -38,11 +38,11 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: "{{ .Values.flaskApp.image.repository }}:{{ .Values.flaskApp.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.flaskApp.image.pullPolicy }}
+          image: "{{ index .Values "flask-app" "image" "repository" }}:{{ index .Values "flask-app" "image" "tag" | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ index .Values "flask-app" "image" "pullPolicy" | default "IfNotPresent" }}
           ports:
             - name: http
-              containerPort: {{ .Values.flaskApp.service.port | default 5000 }}
+              containerPort: {{ index .Values "flask-app" "service" "port" | default 5000 }}
               protocol: TCP
           {{- with .Values.livenessProbe }}
           livenessProbe:
@@ -76,3 +76,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
