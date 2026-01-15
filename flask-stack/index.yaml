@@ -1,0 +1,43 @@
+apiVersion: v1
+entries:
+  flask-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-01-15T16:52:25.517252723Z"
+    description: A Helm chart for Kubernetes
+    digest: 72e723ec965635d923e738190307f467b99456af8f6d8c7d43e3a0de8bf49273
+    name: flask-app
+    type: application
+    urls:
+    - https://AdnanISB.github.io/kubernetes-helm/charts/flask-app-0.1.0.tgz
+    version: 0.1.0
+  flask-stack:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-01-15T16:52:25.516809764Z"
+    dependencies:
+    - name: flask-app
+      repository: file://charts/flask-app
+      version: 0.1.0
+    - name: nginx-app
+      repository: file://charts/nginx-app
+      version: 0.1.0
+    description: A Helm chart for Kubernetes
+    digest: c5c510b0da117e9097a2388443536c90311ba44338673b4a3aaa475df8c96697
+    name: flask-stack
+    type: application
+    urls:
+    - https://AdnanISB.github.io/kubernetes-helm/flask-stack-0.1.0.tgz
+    version: 0.1.0
+  nginx-app:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-01-15T16:52:25.518651789Z"
+    description: A Helm chart for Kubernetes
+    digest: 8b521c84271ba3192977800d15baa35f744b13c6e3ec4f668d71ca63df1a524f
+    name: nginx-app
+    type: application
+    urls:
+    - https://AdnanISB.github.io/kubernetes-helm/charts/nginx-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-01-15T16:52:25.514531551Z"
